@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllGroups } from "../../services/api";
 import { Header } from "../header/Header";
 import { Group } from "./Group";
+import { GroupFormModal } from "./GroupFormModal";
 import "./GroupsPage.css";
 
 export const GroupsPage = () => {
@@ -35,7 +36,9 @@ export const GroupsPage = () => {
           <p className="groups-page__groups__table-header__id">ID</p>
           <p className="groups-page__groups__table-header__name">Name</p>
           <p className="groups-page__groups__table-header__description">Description</p>
-          <button className="groups-page__groups__table-header__add-user-button">Add Group</button>
+          <GroupFormModal
+            trigger={<button className="groups-page__groups__table-header__add-user-button">Add Group</button>}
+          />
         </div>
         {groupsList}
       </div>
