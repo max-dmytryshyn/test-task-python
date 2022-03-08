@@ -3,6 +3,7 @@ import { Header } from "../header/Header.jsx";
 import "./UsersPage.css";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../services/api.js";
+import { UserFormModal } from "./UserFormModal.jsx";
 
 export const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -35,7 +36,9 @@ export const UsersPage = () => {
           <p className="users-page__users__table-header__column-name">Username</p>
           <p className="users-page__users__table-header__column-name">Created</p>
           <p className="users-page__users__table-header__column-name">Group</p>
-          <button className="users-page__users__table-header__add-user-button">Add User</button>
+          <UserFormModal
+            trigger={<button className="users-page__users__table-header__add-user-button">Add User</button>}
+          />
         </div>
         {usersList}
       </div>
