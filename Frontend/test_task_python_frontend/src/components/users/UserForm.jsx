@@ -28,7 +28,10 @@ export const UserForm = (props) => {
 
   return (
     <Formik
-      initialValues={{ username: props.username, group: props.group }}
+      initialValues={{
+        username: typeof props.username !== "undefined" ? props.username : "",
+        group: typeof props.group !== "undefined" ? props.group : "",
+      }}
       validate={(values) => {
         let errors = {};
         if (values.username === "") {
