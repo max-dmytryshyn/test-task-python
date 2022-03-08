@@ -1,3 +1,10 @@
+.user-form-window {
+  background-color: white;
+  border: solid;
+  border-radius: 15px;
+  padding: 20px 100px;
+}
+
 .user-form-window__close-button {
   position: absolute;
   right: 15px;
@@ -17,11 +24,4 @@
 .user-form-window__close-button:hover {
   color: red;
   cursor: pointer;
-}
-
-.user-form-window {
-  background-color: white;
-  border: solid;
-  border-radius: 15px;
-  padding: 20px 100px;
 }
