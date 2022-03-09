@@ -10,7 +10,13 @@ export const UserFormModal = (props) => {
           <button className="user-form-window__close-button" onClick={close}>
             &times;
           </button>
-          <UserForm onUserFormSubmit={close} username={props.defaultUsername} group={props.defaultGroup} />
+          <UserForm
+            operateUserFormData={props.operateUserFormData}
+            additionalOnSubmitActions={[close]}
+            actionsIfFormLoadingFails={[close]}
+            username={props.defaultUsername}
+            group={props.defaultGroup}
+          />
         </div>
       )}
     </Popup>

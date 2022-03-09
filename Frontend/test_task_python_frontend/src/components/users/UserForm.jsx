@@ -14,17 +14,24 @@ export const UserForm = (props) => {
           setGroups(collected_groups.data);
         })
         .catch((error) => {
+          if (typeof props.actionsIfFormLoadingFails !== "undefined") {
+            props.actionsIfFormLoadingFails.forEach((action) => {
+              action();
+            });
+          }
           if (error.response) {
-            console.log("Server responded with HTTP " + error.response.status + " " + error.response.statusText);
+            window.alert(
+              "ERROR\nServer responded with HTTP " + error.response.status + " " + error.response.statusText
+            );
           } else if (error.request) {
-            console.log("Can't reach the server");
+            window.alert("ERROR\nCan't reach the server");
           } else {
-            console.log("Unknown error happened");
+            window.alert("ERROR\nUnknown error happened");
           }
         });
     }
     fetchData();
-  }, []);
+  }, [props.actionsIfFormLoadingFails]);
 
   return (
     <Formik
@@ -43,8 +50,23 @@ export const UserForm = (props) => {
         }
         return errors;
       }}
-      onSubmit={() => {
-        props.onUserFormSubmit();
+      onSubmit={(values) => {
+        if (props.username !== values.username || props.group !== values.group) {
+          let group;
+          if (values.group === "") {
+            group = groups[0];
+          } else {
+            group = groups.find((group) => {
+              return group.name === values.group;
+            });
+          }
+          props.operateUserFormData(values.username, group);
+        }
+        if (typeof props.additionalOnSubmitActions !== "undefined") {
+          props.additionalOnSubmitActions.forEach((action) => {
+            action();
+          });
+        }
       }}
     >
       {({ isSubmitting }) => (
