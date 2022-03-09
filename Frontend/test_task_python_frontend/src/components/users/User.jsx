@@ -1,4 +1,5 @@
-import { updateUserById } from "../../services/api";
+import { deleteUserById, updateUserById } from "../../services/api";
+import { DeleteUserModal } from "./DeleteUserModal";
 import "./User.css";
 import { UserFormModal } from "./UserFormModal";
 
@@ -27,6 +28,24 @@ export const User = (props) => {
       });
   };
 
+  const submitUserDeleting = async (username, group) => {
+    await deleteUserById(props.user.id)
+      .then((response) => {
+        props.renderUsers();
+      })
+      .catch((error) => {
+        if (error.response) {
+          let errorText =
+            "ERROR\nServer responded with HTTP " + error.response.status + " " + error.response.statusText + "\n";
+          window.alert(errorText);
+        } else if (error.request) {
+          window.alert("ERROR\nCan't reach the server");
+        } else {
+          window.alert("ERROR\nUnknown error happened");
+        }
+      });
+  };
+
   return (
     <div className="user-container">
       <p className="user-container__parameter">{props.user.username}</p>
@@ -38,7 +57,11 @@ export const User = (props) => {
         defaultGroup={props.user.group_name}
         operateUserFormData={submitUserEditing}
       />
-      <button className="user-container__delete-button">Delete</button>
+      <DeleteUserModal
+        trigger={<button className="user-container__delete-button">Delete</button>}
+        username={props.user.username}
+        onDelete={submitUserDeleting}
+      />
     </div>
   );
 };

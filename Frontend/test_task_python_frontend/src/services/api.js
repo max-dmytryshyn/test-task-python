@@ -33,6 +33,15 @@ export const updateUserById = async (userId, username, groupId) => {
   }
 };
 
+export const deleteUserById = async (userId) => {
+  try {
+    const response = await axios.delete(`http://127.0.0.1:8000/users/${userId}/`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getAllGroups = async () => {
   try {
     const response = await axios.get("http://127.0.0.1:8000/groups/");
