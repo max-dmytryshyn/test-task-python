@@ -75,3 +75,12 @@ export const updateGroupById = async (groupId, name, description) => {
     throw error;
   }
 };
+
+export const deleteGroupById = async (groupId) => {
+  try {
+    const response = await axios.delete(`http://127.0.0.1:8000/groups/${groupId}/`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
