@@ -10,7 +10,12 @@ export const GroupFormModal = (props) => {
           <button className="group-form-window__close-button" onClick={close}>
             &times;
           </button>
-          <GroupForm onGroupFormSubmit={close} name={props.defaultName} description={props.defaultDescription} />
+          <GroupForm
+            operateGroupFormData={props.operateGroupFormData}
+            additionalOnSubmitActions={[close]}
+            name={props.defaultName}
+            description={props.defaultDescription}
+          />
         </div>
       )}
     </Popup>

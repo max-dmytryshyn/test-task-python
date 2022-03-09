@@ -26,8 +26,15 @@ export const GroupForm = (props) => {
         }
         return errors;
       }}
-      onSubmit={() => {
-        props.onGroupFormSubmit();
+      onSubmit={(values) => {
+        if (props.name !== values.name || props.description !== values.description) {
+          props.operateGroupFormData(values.name, values.description);
+        }
+        if (typeof props.additionalOnSubmitActions !== "undefined") {
+          props.additionalOnSubmitActions.forEach((action) => {
+            action();
+          });
+        }
       }}
     >
       {({ isSubmitting }) => (
