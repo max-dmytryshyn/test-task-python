@@ -1,0 +1,52 @@
+.delete-user-window {
+  background-color: white;
+  border: solid;
+  border-radius: 15px;
+  padding: 20px 100px;
+  text-align: center;
+}
+
+.delete-user-window__close-button {
+  position: absolute;
+  right: 15px;
+  top: 4px;
+
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+  border: none;
+  background: none;
+  padding: 0;
+
+  transition: 0.3s color;
+}
+
+.delete-user-window__text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.delete-user-window__close-button:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.delete-user-window__confirm-button {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+  background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 12.5px;
+  padding: 14px 40px;
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.delete-user-window__confirm-button:hover {
+  color: white;
+  background-color: red;
+}

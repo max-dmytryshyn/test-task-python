@@ -1,0 +1,15 @@
+.header__nav__item {
+  padding: 15px 30px;
+  margin: 0px 20px;
+  border-radius: 20px;
+
+  font-size: 22px;
+
+  text-align: center;
+
+  transition: background-color 0.3s;
+}
+
+.header__nav__item:hover {
+  background-color: lightgray;
+}

@@ -1,0 +1,18 @@
+.app {
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+a {
+  text-decoration: none;
+  color: #020202;
+}
+
+li {
+  display: block;
+}
+
+body {
+  font-family: Avenir, sans-serif;
+  background-color: linear-gradient(180deg, #f6fafd 0%, #ffffff 19.4%);
+}
