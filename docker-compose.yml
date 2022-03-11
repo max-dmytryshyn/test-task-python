@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/posgresql_db:/var/lib/posgresql/data
+    environment:
+      - POSTGRES_DB=test_task_python_DB
+      - POSTGRES_USER=test_task_python_DB_user
+      - POSTGRES_PASSWORD=testtaskpassword
+    container_name: test_task_python_db_container
+
+  backend:
+    build:
+      context: ./Backend
+    volumes:
+      - .:/usr/src/code
+    environment:
+      - SECRET_KEY=django-insecure-q^%=$$&m8l4h%vk+t7q=6g+_sp=@49@h3v(e7s@uh*mf%4#t=ry
+      - NAME=test_task_python_DB
+      - USERNAME=test_task_python_DB_user
+      - PASSWORD=testtaskpassword
+    ports:
+      - 8000:8000
+    image: test_task_python_backend:django
+
+    command: bash -c "
+      cd test_task_python_backend
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000
+      "
+    container_name: test_task_python_backend_container
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./Frontend
+    volumes:
+      - .:/usr/src/code
+    ports:
+      - 3000:3000
+    image: test_task_python_frontend:react
+    command: bash -c "
+      cd test_task_python_frontend
+      && npx serve -s build
+      "
+    container_name: test_task_python_frontend_container
+    depends_on:
+      - backend
+

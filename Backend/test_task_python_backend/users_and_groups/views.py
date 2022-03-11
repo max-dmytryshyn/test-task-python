@@ -16,6 +16,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         group = get_object_or_404(queryset, pk=pk)
         try:
             group.delete()
+            return HttpResponse(status=200, content=group)
         except ProtectedError:
             return HttpResponse(status=403,
                                 reason="Forbidden. Can't delete this group because there is at least one user in it")
