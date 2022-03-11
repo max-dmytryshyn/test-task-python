@@ -33,3 +33,20 @@ services:
     container_name: test_task_python_backend_container
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./Frontend
+    volumes:
+      - .:/usr/src/code
+    ports:
+      - 3000:3000
+    image: test_task_python_frontend:react
+    command: bash -c "
+      cd test_task_python_frontend
+      && npx serve -s build
+      "
+    container_name: test_task_python_frontend_container
+    depends_on:
+      - backend
+
