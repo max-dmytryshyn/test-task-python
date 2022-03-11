@@ -11,7 +11,16 @@ export const UserForm = (props) => {
     async function fetchData() {
       await getAllGroups()
         .then((collected_groups) => {
-          setGroups(collected_groups.data);
+          if (collected_groups.data.length === 0) {
+            window.alert("ERROR\nNo groups available. Create at least one group first");
+            if (typeof props.actionsIfFormLoadingFails !== "undefined") {
+              props.actionsIfFormLoadingFails.forEach((action) => {
+                action();
+              });
+            }
+          } else {
+            setGroups(collected_groups.data);
+          }
         })
         .catch((error) => {
           if (typeof props.actionsIfFormLoadingFails !== "undefined") {
