@@ -10,17 +10,19 @@ Django(backend) and PostgreSQL(DB)
 ---
 
 ## Requirements
-1. Python (3.8+)
-2. Docker + docker compose
+ + Git
+ + Docker Desktop
 ---
 
-## How to run
+## How to install
+  + Start Docker Desktop
   + Open terminal in folder where you want to store this repository
   + Clone this repository with command `git clone https://github.com/max-dmytryshyn/test-task-python`
   + Go into folder with files with command `cd test-task-python`
   + Run command `docker-compose build` to build images
-  + Run command `docker-compose run --rm db` to set up DB
+  + Run command `docker-compose up db` to set up DB
   + After receiving `database system is ready to accept connections` in terminal, press `Ctrl` + `C` to stop process
   + Run command `docker-compose up` to run full application
   + Open http://localhost:3000/
   + Done, now you can operate users and groups as you want
+  + You can always stop app by pressing `Ctrl` + `C` in terminal and start it again with `docker-compose up`
