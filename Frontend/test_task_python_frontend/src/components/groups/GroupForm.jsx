@@ -14,7 +14,7 @@ export const GroupForm = (props) => {
         let errors = {};
         if (values.name === "") {
           errors.name = "Field required";
-        } else if (values.name.length > 30) {
+        } else if (values.name.length > 15) {
           errors.name = "Name is too long";
         } else if (!/^([a-z0-9]+_)*[a-z0-9]+$/.test(values.name)) {
           errors.name = "Invalid name";

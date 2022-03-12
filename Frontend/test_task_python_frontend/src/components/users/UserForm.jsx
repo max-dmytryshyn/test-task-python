@@ -52,7 +52,7 @@ export const UserForm = (props) => {
         let errors = {};
         if (values.username === "") {
           errors.username = "Field required";
-        } else if (values.username.length > 30) {
+        } else if (values.username.length > 15) {
           errors.username = "Username is too long";
         } else if (!/^([a-z0-9]+_)*[a-z0-9]+$/.test(values.username)) {
           errors.username = "Invalid username";
